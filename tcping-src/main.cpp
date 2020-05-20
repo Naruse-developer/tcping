@@ -76,7 +76,7 @@ void usage(int argc, char* argv[]) {
 	cout << " --file : 將\"伺服器地址\"視為文件名，逐行循環瀏覽文件" << endl;
 	cout << "          注意: --file 與 -j 和 -c 之類的選項不兼容，因為它在不同的目標中循環" << endl;
 	cout << "          （可選）接受服務器連接埠.  範例:\"example.org 443\" 是有效格式." << endl;
-	cout << "          或者，使用 -p 強制在命令行中為文件中的所有內容提供連接埠." << endl;
+	cout << "          或者,使用 -p 強制在命令行中為文件中的所有內容提供連接埠." << endl;
 	cout << " -g 5   : 在5次未響應發出的tcping請求之後就退出" << endl;
 	cout << " -S _X_ : 指定源地址 _X_ . 源必須是客戶端計算機的有效 IP" << endl;
 	cout << " -p _X_ : 指定連接埠的替代方法" << endl;
@@ -98,7 +98,7 @@ void usage(int argc, char* argv[]) {
 	cout << " --block  : 使用“阻止”套接字進行連接。 這樣可以防止 -w 工作並運行" << endl;
 	cout << "            udefault超時(在設置的超時的情況下,最長為20秒),但是它可以主動檢測" << endl;
 	cout << "            拒絕連接與超時." << endl;
-    cout << endl << "\t 如果不通過服務器端口，則默認為 " << kDefaultServerPort << "." << endl;
+    cout << endl << "\t 如果未指定服務器連接埠，則默認為 " << kDefaultServerPort << "." << endl;
 
 }
 

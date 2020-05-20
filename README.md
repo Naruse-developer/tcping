@@ -1,2 +1,81 @@
+# 描述
+tcping测量在其自身与远程主机之间执行TCP 3向握手(SYN，SYN / ACK，ACK)所花费的时间。
+不包括传出最终ACK的传输时间，仅包括将其丢弃所需的（最短）时间
+电线.在近端。 这允许(SYN，SYN / ACK)的传播时间近似于相当于ICMP(请求，响应).
+
 # tcping
+
 ping over a tcp connection
+
+通過建立到網絡主機的連接來模擬tcp上的"ping".
+    測量系統達到[SYN]，接收目標的[SYN] [ACK]和發送[ACK]的時間.
+    請注意,最後一個ACK不包括在內 - 僅包括發送端在傳輸花費的時間。
+
+# 如何使用 (基本/完整語法)
+
+此程式已經具備大部分的中文提示,包括了錯誤提示或者信息
+
+基礎語法 : [-flags] 域名或者IP地址(google.cn) [伺服器連接埠(80或者443)]
+完整語法 : [-t] [-d] [-i interval] [-n times] [-w ms] [-b n] [-r times] [-s] [-v] [-j] [-js size] [-4] [-6] [-c] [-g count] [-S source_address] [--file] [--tee filename] [-h] [-u]
+        [--post] [--head] [--proxy-port port] [--proxy-server server] [--proxy-credentials username:password] [-f] server-address " << "[server-port]"
+
+-t     : 連續ping直到通過control-c(用戶發出終止命令)停止
+-n 5   : 發送5次tcping
+-i 5   : 間隔5秒執行tcping
+-w 0.5 : 等待0.5秒響應發出的請求
+-d     : 每行發出的命令帶有日期和時間
+-b 1   : enable beeps (1 for on-down, 2 for on-up,3 for on-change, 4 for always)
+-r 5   : 間隔5次tcping之後重新查找一次主機名
+-s     : 成功回應發出的tcping請求後自動退出
+-v     : 打印當前的程式版本後退出
+-j     : 使用預設的平均值包括抖動
+-js 5  : 使用預設的平均值,平均值的偏差在5左右,包括抖動
+--tee  : 將輸出鏡像到'--tee'之後指定的文件名
+--append : 附加到--tee文件名,但不覆蓋文件"
+-4     : 優先使用 ipv4
+-6     : 優先使用 ipv6
+-c     : 僅在更改狀態下顯示輸出線
+--file : 將\"伺服器地址\"視為文件名，逐行循環瀏覽文件,注意: --file 與 -j 和 -c 之類的選項不兼容，因為它在不同的目標中循環,
+        (可選)接受服務器連接埠.  範例:\"example.org 443\" 是有效格式. 或者,使用 -p 強制在命令行中為文件中的所有內容提供連接埠
+-g 5   : 在5次未響應發出的tcping請求之後就退出
+-S _X_ : 指定源地址 _X_ . 源必須是客戶端計算機的有效 IP
+-p _X_ : 指定連接埠的替代方法
+--fqdn : 在每一行上打印域名(如果有)
+--ansi : 使用ANSI顏色順序 (cygwin)
+--color: 使用Windows顏色序列
+
+# 如何使用 (HTTP 選項)
+
+-h     : HTTP模式(使用不帶http://的url作為伺服器地址)
+-u     : 在每行上包含目標URL
+--post : 使用POST而不是GET (可以避免緩存)
+--head : 使用HEAD而不是GET
+--proxy-server : 指定代理伺服器
+--proxy-port   : 指定代理伺服器通訊埠
+--proxy-credentials : 以用戶名：密碼格式指定“代理授權：基本"標頭"
+
+# 開發人員選項
+
+-f     : 強制tcping發送至少一個字節
+--header : 包括帶有原始參數和日期的標頭。 如果使用--tee則隱含
+--block  : 使用“阻止”套接字進行連接。 這樣可以防止 -w 工作並運行,udefault超時(在設置的超時的情況下,最長為20秒),但是它可以主動檢測拒絕連接與超時
+(PS: 如果未指定服務器連接埠，則默認為 80 )
+
+
+# 返回值
+
+如果所有ping成功，则tcping返回0；如果ping零成功，则返回1；对于混合结果，返回2。
+
+# BUGS/REQUESTS
+
+Please report bugs and feature requests to the author via contact information on http://www.elifulkerson.com
+    
+# AVAILABILITY
+
+tcping is available at http://www.elifulkerson.com/projects/tcping.php
+
+# 授權
+
+GPLv3
+
+Copyright © Akkariiin 2018. Forked from tcping by elifulkerson
