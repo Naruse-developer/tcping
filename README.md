@@ -20,6 +20,7 @@ ping over a tcp connection
 此程式已經具備大部分的中文提示,包括了錯誤提示或者信息
 
 基礎語法 : [-flags] 域名或者IP地址(google.cn) [伺服器連接埠(80或者443)]  
+
 完整語法 : [-t] [-d] [-i interval] [-n times] [-w ms] [-b n] [-r times] [-s] [-v] [-j] [-js size] [-4] [-6] [-c] [-g count] [-S source_address] [--file] [--tee filename] [-h] [-u]  
         [--post] [--head] [--proxy-port port] [--proxy-server server] [--proxy-credentials username:password] [-f] server-address " << "[server-port]"  
 
@@ -62,7 +63,8 @@ ping over a tcp connection
 
 -f     : 強制tcping發送至少一個字節  
 --header : 包括帶有原始參數和日期的標頭。 如果使用--tee則隱含  
---block  : 使用“阻止”套接字進行連接。 這樣可以防止 -w 工作並運行,udefault超時(在設置的超時的情況下,最長為20秒),但是它可以主動檢測拒絕連接與超時  
+--block  : 使用“阻止”套接字進行連接。 這樣可以防止 -w 工作並運行,udefault超時  
+(在設置的超時的情況下,最長為20秒),但是它可以主動檢測拒絕連接與超時  
 (PS: 如果未指定服務器連接埠，則默認為 80 )  
 
 
